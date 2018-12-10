@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./plugin/layui/css/layui.css"/>
+    <title>登录/注册</title>
+    <style type="text/css">
+        html, body {
+            min-width: 1140px;
+        }
+
+        .main {
+            width: 1140px;
+            margin: 0 auto;
+        }
+
+        /* tab选项卡 */
+        .layui-tab {
+            width: 900px;
+            margin: 20px auto;
+            background-color: white;
+        }
+
+        .layui-tab-title {
+            height: 60px;
+        }
+
+        .layui-tab-title li {
+            line-height: 60px;
+            min-width: 165px;
+            font-size: 18px;
+        }
+
+        .layui-tab-title .layui-this {
+            color: black;
+        }
+
+        .layui-tab-title .layui-this:after {
+            height: 60px;
+        }
+
+        .layui-tab-content {
+            padding: 50px;
+        }
+
+        /*表单  */
+        .layui-form-item {
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 30px;
+        }
+
+        .layui-form-radio > i:hover, .layui-form-radioed > i {
+            color: #515151;
+        }
+
+        .layui-btn {
+            padding: 0 30px;
+            background-color: #515151;
+        }
+
+        .layui-btn-primary {
+            background-color: white;
+        }
+
+        .layui-btn-primary:hover {
+            border-color: #515151;
+        }
+
+        .layui-form-onswitch {
+            border-color: #515151;
+            background-color: #515151;
+        }
+
+        .layui-word-aux {
+            margin-left: 110px;
+            color: #E72F17 !important;
+            line-height: 2em;
+        }
+
+        .protocol {
+            margin-right: 10px;
+            color: #515151;
+            text-decoration: underline;
+            font-size: 14px;
+            vertical-align: -4px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="layui-tab layui-tab-card" lay-filter="tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id="login">
+                <span>登录</span>
+            </li>
+            <li lay-id="register">
+                <span>注册</span>
+            </li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form" lay-filter="login">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-block">
+                            <input lay-verType="tips" lay-verify="username" type="text" name="username" required
+                                   lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-block">
+                            <input lay-verType="tips" lay-verify="password" type="password" name="password" required
+                                   lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button type="button" class="layui-btn" lay-submit lay-filter="login">登录</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="layui-tab-item">
+                <form class="layui-form" lay-filter="register">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-block">
+                            <input lay-verType="tips" type="text" lay-verify="username" name="username" required
+                                   placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-block">
+                            <input lay-verType="tips" type="password" lay-verify="password" name="password" required
+                                   placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">确认密码</label>
+                        <div class="layui-input-block">
+                            <input lay-verType="tips" type="password" lay-verify="cp" name="cp" required
+                                   placeholder="请再次输入密码" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户协议</label>
+                        <div class="layui-input-block">
+                            <a class="protocol" href="javascript:void(0)" id="protocol">已阅读并同意此用户协议</a>
+                            <input type="checkbox" lay-filter="protocol" name="protocol" value="1" lay-skin="switch"
+                                   lay-text="同意|拒绝">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button type="button" class="layui-btn" lay-submit lay-filter="register">注册</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="./plugin/jquery-3.2.1.min.js"></script>
+<script src="./plugin/jquery.cookie.js"></script>
+<script src="./plugin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['element', 'form', 'layer'], function () {
+
+        var element = layui.element,
+            form = layui.form,
+            layer = layui.layer;
+
+
+        form.on('submit(login)', function (res) {
+            var data=res.field;
+            $.post('http://localhost:8080/LoginServlet',data)
+            .done(function (res) {
+                if(res.isSuccessful){
+                    console.log(res.userInfo);
+                }else{
+                    console.log(res.message)
+                }
+            });
+            return false;
+        });
+
+        form.on('submit(register)', function (data) {
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            if (data.field.protocol) {
+
+            } else {
+                layer.tips('请先阅读并同意此协议', '#protocol', {
+                    tips: 1
+                });
+            }
+            return false; //阻止表单跳转
+        });
+
+
+        form.verify({
+            ps: '',
+            username: function (value, item) { //value：表单的值、item：表单的DOM对象
+                if (value === '') {
+                    return '用户名不能为空！'
+                }
+                if (!/.{5,20}/.test(value)) {
+                    return '用户名长度为5~20个字符！';
+                }
+                if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                    return '用户名不能有特殊字符！';
+                }
+                if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                    return '用户名首尾不能出现下划线\'_\'！';
+                }
+                if (/^\d+\d$/.test(value)) {
+                    return '用户名不能全为数字！';
+                }
+            },
+
+            password: function (value, item) {
+                if (value === '') {
+                    return '密码不能为空！'
+                }
+                if (!/[a-zA-Z0-9]{6,12}$/.test(value)) {
+                    return '密码必须6~12位的数字和字母组成！'
+                } else {
+                    this.ps = value;
+                }
+            },
+
+            cp: function (value, item) {
+                if (value === '') {
+                    return '密码不能为空！'
+                }
+                if (value !== this.ps) {
+
+                    return '两次密码不一致！'
+                }
+            },
+
+        });
+
+    });
+</script>
+
+</html>
